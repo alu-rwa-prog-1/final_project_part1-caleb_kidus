@@ -4,6 +4,38 @@
 # Author : Caleb Mugisha, Kidus Mengitsu
 
 ############################################################################
+try:
+    import random
+    import os
+    import sys
+    import time
+    import pygame
+    from pygame.locals import *
+except ImportError as err:
+    print (f"Could not load module. {err}")
+    sys.exit(2)
+from snake import *
+from fruit import *
+
+div = 20
+size = 500
+tileSize = size // div
+fps = pygame.time.Clock()
+difficulty = 15
+mode = "on"
+
+green = pygame.Color(35, 112, 56)
+black = pygame.Color(0, 0, 0)
+white = pygame.Color(255, 255, 255)
+gray = pygame.Color(180, 180, 180)
+red = pygame.Color(255, 0, 0)
+
+def redrawWindow(surface):
+    surface.fill((0,0,0))
+   
+    snake.draw(surface)
+    fruit.draw(surface)
+    pygame.display.update()
 
 
 def main():
