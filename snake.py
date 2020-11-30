@@ -47,6 +47,10 @@ class Segment():
 
 # only 1 instance of this per game, holds the segment classes in the tail array
 class Snake():
+    """
+    class containing all the constistuents of the snake
+
+    """
     def __init__(self):
         # creates the head instance, starts it in the center of the grid, and adds it to the tail array
         self.head = Segment([10, 10])

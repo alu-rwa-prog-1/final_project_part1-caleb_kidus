@@ -34,6 +34,11 @@ snake = Snake()
 
 # only 1 instance per game that is moved to a new random location when the snake head reaches it
 class Fruit():
+    """
+    class containing the fruit properties
+
+    """
+
     def __init__(self):
         self.pos = [-1, -1]
         self.color = red
@@ -47,8 +52,7 @@ class Fruit():
             for seg in snake.tail:
                 if seg.pos[0] == self.pos[0] and seg.pos[1] == self.pos[1]:
                     flag = True
-                    print("_________________________________________________________________")
-            if flag:
+                    
                 pass
             else:
                 break
