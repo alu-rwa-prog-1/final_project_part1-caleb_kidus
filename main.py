@@ -17,10 +17,10 @@ except ImportError as err:
 from component import *
 
 # create global instances of the snake and fruit classes and spawn the fruit in its first location
-global snake, fruit
-snake = Snake()
-fruit = Fruit()
-fruit.spawn()
+# global snake, fruit
+# snake = Snake()
+# fruit = Fruit()
+# fruit.spawn()
 
 div = 20
 size = 500
@@ -144,7 +144,7 @@ def main():
             pygame.display.set_caption(f"Snake Game   Score: {len(snake.tail) - 1}")
 
             # moved these from main list of messages because the score needs to be updated each frame
-            winMessage = smallFont.render(f"You won, amazing! Score: {len(snake.tail) - 1}", True, red)
+            winMessage = smallFont.render("You won, amazing!", True, red)
             deadMessage = smallFont.render(f"You died! Score: {len(snake.tail) - 1}", True, white)
 
             # changed this from using get_pressed so it will be responsive at low fps (difficulty)
@@ -174,7 +174,9 @@ def main():
                 if snake.head.pos[0] == fruit.pos[0] and snake.head.pos[1] == fruit.pos[1]:
                     
                     snake.eatFruit()
+                    
                 redrawWindow(screen)
+                
             else:
                 break
 

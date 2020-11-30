@@ -34,11 +34,15 @@ red = pygame.Color(255, 0, 0)
 
 
 class Segment():
+    """
+    shows the snake as segments that form a whole.
+
+    """
     def __init__(self, pos):
         self.pos = pos
         self.color = green
 
-    def draw(self, surface, eyes=False):
+    def draw(self, surface):
         xPos = self.pos[0]
         yPos = self.pos[1]
 
@@ -74,7 +78,7 @@ class Snake():
     def draw(self, surface):
         for seg in self.tail:
             if seg == self.tail[0]:
-                seg.draw(surface, True)
+                seg.draw(surface)
             else:
                 seg.draw(surface)
 
@@ -112,7 +116,7 @@ class Snake():
             if self.head.pos[0] >= div or self.head.pos[0] < 0 or self.head.pos[1] < 0 or self.head.pos[1] >= div:
                 self.dead = True
         else:
-            print("+++++++++++++++++++++++++++++++++++++++=")
+            
             if self.head.pos[0] >= div:
                 self.head.pos[0] = 0
             elif self.head.pos[0] < 0:
@@ -124,7 +128,7 @@ class Snake():
 
     # checks if the player has won, meaning filled the entire board with tail
     def checkWin(self):
-        if len(self.tail) >= div * div:
+        if len(self.tail) >= 15:
             self.dead = True
             self.winner = True
 
@@ -134,6 +138,7 @@ class Snake():
     def eatFruit(self):
         fruit = Fruit()
         fruit.spawn()
+        
 
         # if it is the first tail segment, location is chosen based on the direction of the head instead
         if len(self.tail) == 1:
@@ -173,13 +178,19 @@ class Fruit():
 
     # spawns the fruit in a new position and makes sure it is not overlapping any part of the snake
     def spawn(self):
+        snake = Snake()
         while True:
             flag = False
             self.pos[0] = random.randint(0, div - 1)
-            self.pos[1] = random.randint(0, div - 1)
+            self.pos[1] = random.randint(0, div - 1)     
+                  
             for seg in snake.tail:
                 if seg.pos[0] == self.pos[0] and seg.pos[1] == self.pos[1]:
+                    print("______________________________________________________________")
+                    
+                   
                     flag = True
+
             if flag:
                 pass
             else:
