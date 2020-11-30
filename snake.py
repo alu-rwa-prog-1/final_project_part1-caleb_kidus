@@ -32,6 +32,7 @@ white = pygame.Color(255, 255, 255)
 gray = pygame.Color(180, 180, 180)
 red = pygame.Color(255, 0, 0)
 
+
 class Segment():
     def __init__(self, pos):
         self.pos = pos
@@ -125,7 +126,7 @@ class Snake():
     # by finding which direction around the current last tail segment is occupied by another tail
     # (meaning which direction the body is in) and adding a new segment opposite to that position
     def eatFruit(self):
-        fruit = Fruit
+        fruit = Fruit()
         fruit.spawn()
 
         # if it is the first tail segment, location is chosen based on the direction of the head instead
@@ -157,3 +158,35 @@ class Snake():
                 newX = self.tail[-1].pos[0]
                 newY = self.tail[-1].pos[1] - 1
             self.tail.append(Segment([newX, newY]))
+
+# only 1 instance per game that is moved to a new random location when the snake head reaches it
+class Fruit():
+    def __init__(self):
+        self.pos = [-1, -1]
+        self.color = red
+
+    # spawns the fruit in a new position and makes sure it is not overlapping any part of the snake
+    def spawn(self):
+        while True:
+            flag = False
+            self.pos[0] = random.randint(0, div - 1)
+            self.pos[1] = random.randint(0, div - 1)
+            for seg in snake.tail:
+                if seg.pos[0] == self.pos[0] and seg.pos[1] == self.pos[1]:
+                    flag = True
+                    
+            if flag:
+                pass
+            else:
+                break
+
+    def draw(self, surface):
+        pygame.draw.rect(surface, self.color, (self.pos[0] * tileSize + 1, self.pos[1] * tileSize + 1, tileSize - 2, tileSize - 2))
+
+
+
+# create global instances of the snake and fruit classes and spawn the fruit in its first location
+global snake, fruit
+snake = Snake()
+fruit = Fruit()
+fruit.spawn()

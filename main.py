@@ -15,7 +15,12 @@ except ImportError as err:
     print (f"Could not load module. {err}")
     sys.exit(2)
 from snake import *
-from fruit import *
+
+# create global instances of the snake and fruit classes and spawn the fruit in its first location
+global snake, fruit
+snake = Snake()
+fruit = Fruit()
+fruit.spawn()
 
 div = 20
 size = 500
@@ -48,11 +53,7 @@ def main():
     background = background.convert()
     background.fill(black)
 
-    # create global instances of the snake and fruit classes and spawn the fruit in its first location
-    global snake, fruit
-    snake = Snake()
-    fruit = Fruit()
-    fruit.spawn()
+    
 
     # all text used on start and end screens
     smallFont = pygame.font.SysFont("Courier", 20)

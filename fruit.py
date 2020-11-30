@@ -14,9 +14,7 @@ except ImportError as err:
     print (f"Could not load module. {err}")
     sys.exit(2)
     
-import snake
-from main import *
-
+from snake import Snake 
 
 div = 20
 size = 500
@@ -30,7 +28,7 @@ black = pygame.Color(0, 0, 0)
 white = pygame.Color(255, 255, 255)
 gray = pygame.Color(180, 180, 180)
 red = pygame.Color(255, 0, 0)
-global snake, fruit
+global snake
 snake = Snake()
 
 
@@ -49,6 +47,7 @@ class Fruit():
             for seg in snake.tail:
                 if seg.pos[0] == self.pos[0] and seg.pos[1] == self.pos[1]:
                     flag = True
+                    print("_________________________________________________________________")
             if flag:
                 pass
             else:
@@ -56,4 +55,3 @@ class Fruit():
 
     def draw(self, surface):
         pygame.draw.rect(surface, self.color, (self.pos[0] * tileSize + 1, self.pos[1] * tileSize + 1, tileSize - 2, tileSize - 2))
-fruit = Fruit()
