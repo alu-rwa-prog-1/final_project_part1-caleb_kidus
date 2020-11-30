@@ -178,7 +178,6 @@ class Fruit():
             for seg in snake.tail:
                 if seg.pos[0] == self.pos[0] and seg.pos[1] == self.pos[1]:
                     flag = True
-                    
             if flag:
                 pass
             else:
@@ -194,3 +193,6 @@ global snake, fruit
 snake = Snake()
 fruit = Fruit()
 fruit.spawn()
+
+if __name__ == "__main__":
+    snake

@@ -14,7 +14,7 @@ try:
 except ImportError as err:
     print (f"Could not load module. {err}")
     sys.exit(2)
-from snake import *
+from component import *
 
 # create global instances of the snake and fruit classes and spawn the fruit in its first location
 global snake, fruit
@@ -154,13 +154,13 @@ def main():
                 if event.type == pygame.QUIT or event.type == pygame.K_q:
                     return
                 elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_UP and event.key != pygame.K_DOWN:
+                    if event.key == pygame.K_UP and  snake.dir != 'down' :
                         snake.dir = 'up'
-                    if event.key == pygame.K_RIGHT and event.key != pygame.K_LEFT:
+                    if event.key == pygame.K_RIGHT and snake.dir != 'left':
                         snake.dir = 'right'
-                    if event.key == pygame.K_DOWN and event.key != pygame.K_UP:
+                    if event.key == pygame.K_DOWN and snake.dir != 'up':
                         snake.dir = 'down'
-                    if event.key == pygame.K_LEFT and event.key != pygame.K_RIGHT:
+                    if event.key == pygame.K_LEFT and snake.dir != 'right':
                         snake.dir = 'left'
                     
             # moves the snake in its direction until another key is pressed that changes it
@@ -170,7 +170,9 @@ def main():
 
             if not snake.dead:
                 # if the snake head reaches the fruit, respawn it and add a tail segment, then updates screen
+                
                 if snake.head.pos[0] == fruit.pos[0] and snake.head.pos[1] == fruit.pos[1]:
+                    
                     snake.eatFruit()
                 redrawWindow(screen)
             else:
