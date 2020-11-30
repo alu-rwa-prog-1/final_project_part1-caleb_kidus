@@ -108,9 +108,11 @@ class Snake():
                     self.dead = True
         # if wall mode is on, snake dies when head touches a wall, if not, snake comes out other side of board
         if mode == "on":
+            
             if self.head.pos[0] >= div or self.head.pos[0] < 0 or self.head.pos[1] < 0 or self.head.pos[1] >= div:
                 self.dead = True
         else:
+            print("+++++++++++++++++++++++++++++++++++++++=")
             if self.head.pos[0] >= div:
                 self.head.pos[0] = 0
             elif self.head.pos[0] < 0:
